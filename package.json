@@ -1,0 +1,64 @@
+{
+  "name": "cambian_signin",
+  "version": "2.0.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.5.10",
+    "@cambianrepo/cambianreact": "^0.0.160",
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.1",
+    "@mui/lab": "^5.0.0-alpha.62",
+    "@mui/material": "^5.1.0",
+    "@mui/styles": "^5.2.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "date-fns": "^2.28.0",
+    "graphql": "^16.3.0",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "jwt-decode": "^3.1.2",
+    "node-sass": "^6.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.14.2",
+    "react-jsx": "^1.0.0",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts --max_old_space_size=5120 start",
+    "build": "react-scripts --max_old_space_size=5120 build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.18",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  }
+}

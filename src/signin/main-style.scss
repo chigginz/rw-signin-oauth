@@ -1,0 +1,18 @@
+$brand-color: #428bca;
+
+$screen-xs: 480;
+$screen-sm: 768;
+$screen-md: 992;
+$screen-lg: 1200;
+
+$screen-xs-min: $screen-xs;
+$screen-sm-min: $screen-sm;
+$screen-md-min: $screen-md;
+$screen-lg-min: $screen-lg;
+
+$screen-xs-max: ($screen-sm - 1);
+$screen-sm-max: ($screen-md - 1);
+$screen-md-max: ($screen-lg - 1);
+
+$screen-desktop: $screen-md-min;
+$screen-lg-desktop: $screen-lg-min;
