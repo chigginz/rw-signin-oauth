@@ -249,7 +249,8 @@ export class AuthService<TIDToken = JWTIDToken> {
       codeChallengeMethod: 'S256'
     }
     // Responds with a 302 redirect
-    const url = `${authorizeEndpoint || `${provider}/authorize`}?${toUrlEncoded(query)}`
+    const url = `${authorizeEndpoint || `${provider}/auth`}?${toUrlEncoded(query)}`
+    // const url = `${authorizeEndpoint || `${provider}/authorize`}?${toUrlEncoded(query)}`
 
     // From a deployoment point of view, use of window.location.replace is acceptable here since it
     // navigates to the Auth server, not to a context within the React Router v6 application
