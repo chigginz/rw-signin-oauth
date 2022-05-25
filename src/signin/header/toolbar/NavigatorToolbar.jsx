@@ -14,7 +14,6 @@ import {makeStyles} from "@mui/styles";
 import {CambianBranding} from "../CambianBranding";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {HoverIconButton} from "@cambianrepo/cambianreact";
 import HomeIcon from "@mui/icons-material/Home";
 import PeopleIcon from "@mui/icons-material/People";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
@@ -203,35 +202,7 @@ function DesktopMenuBar(props) {
     };
     return (
         <div className={classes.appbarMenu}>
-            <HoverIconButton text={t('Home')}
-                             icon={<HomeIcon/>}
-                             isSelected={getSelectedView() === 'HomeView'}
-                             menuSelectionCallback={() => handleMenuSelectionNavigation('HomeView')}/>
 
-            <HoverIconButton text={t('Network')}
-                             icon={<PeopleIcon/>}
-                             isSelected={
-                                            getSelectedView() === 'NetworkConnectionView' ||
-                                            getSelectedView() === 'OrganizationAboutView' ||
-                                            getSelectedView() === 'OrganizationResourceView'
-                                    }
-                             menuSelectionCallback={() => handleMenuSelectionNavigation('NetworkConnectionView')}/>
-
-            <HoverIconButton text={t('Questionnaires')}
-                             icon={<QuestionAnswerIcon/>}
-                             isSelected={
-                                 getSelectedView() === 'QuestionnaireListView' ||
-                                 getSelectedView() === 'ViewQuestionnaireResultsView' ||
-                                 getSelectedView() === 'ContinueQuestionnaireView'
-                             }
-                             menuSelectionCallback={() => handleMenuSelectionNavigation('QuestionnaireListView')}/>
-
-            <ClickAwayListener onClickAway={handleHealthDataClickAway}>
-               <HoverIconButton text={t('Health Data')}
-                                icon={<EqualizerIcon/>}
-                                isSelected={getSelectedView() === 'HealthData'}
-                                menuSelectionCallback={handleHealthDataMenuList}/>
-            </ClickAwayListener>
             <Menu id="menu-healthData"
                  anchorEl={anchorHealthDataEl}
                  anchorOrigin={{
@@ -308,17 +279,7 @@ function DesktopAccountMenu() {
 
     return (
         <div className={classes.appbarAccount}>
-            <ClickAwayListener onClickAway={() => setAnchorAccountEl(null)}>
-                <HoverIconButton icon={
-                    <div className={classes.iconButtonLabel}>
-                        <ErrorBoundary>
-                            <CitizenUser/>
-                        </ErrorBoundary>
-                    </div>
-                }
-                                 menuSelectionCallback={handleAccountMenuList}>
-                </HoverIconButton>
-            </ClickAwayListener>
+
 
             <Menu id="menu-account"
                   anchorEl={anchorAccountEl}

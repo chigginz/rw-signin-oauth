@@ -4,7 +4,7 @@
 checkLoginProgress
 ​ +++ logout true:{"clientId":"idhe-two","autoRefresh":"true","provider":"http://silverfir:8787/realms/MisDev2/protocol/openid-connect","logoutEndpoint":"http://silverfir:8787/realms/MisDev2/protocol/openid-connect/logout\",","redirectUri":"http://localhost:3000/signin/","scopes":["read offline_access"]}
 ​ Should End? true
-​ LOGOUT: http://silverfir:8787/realms/MisDev2/protocol/openid-connect/logout",
+​ LOGOUT: http://silverfir:8787/realms/MisDev2/protocol/openid-connect/logout,
 ​ accessToken: undefined
 ​ DONE integration api gateway logout
 ​ +++ SignIn

@@ -24,16 +24,16 @@ function ProtectedRoute({ children }) {
 
     useEffect(() => {
         if (authService.isAuthenticated() === false) {
-            if (authService.isPending()) {
+            /*if (authService.isPending()) {
                 console.log("Authorization is pending");
                 let pendingTimeout = window.setTimeout(() => {
                     checkLoginProgress();
                 }, 5000);
-            } else {
+            } else {*/
                 let signInUrl = "/sign-in?preAuthUri=" + window.location.href;
                 navigate(signInUrl);
                 // navigate('/public');
-            }
+            //}
         } else {
             setChildComponent(children);
         }

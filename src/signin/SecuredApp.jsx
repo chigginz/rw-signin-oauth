@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavigatorUserSignin from "./NavigatorUserSignin";
 import {AuthProvider, AuthService, useAuth} from "./security";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -8,8 +8,6 @@ import {onError} from "@apollo/client/link/error";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {ThemeProvider} from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import {CambianTheme} from "@cambianrepo/cambianreact";
 import PublicRoute from "./PublicRoute";
 import RegistrationPage from "./pages/register/RegistrationPage";
 import {SignIn} from "./sign-in/SignIn";
@@ -27,7 +25,10 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {cleanAuth, cleanSessionStorage, signOut} from "./utility";
 import {useTranslation} from "react-i18next";
-
+//import IdleTimer from 'react-idle-timer';
+//import IdleTimer from './sign-in/IdleTimer';
+//import TimeoutModal from 'TimeOutModal';
+import Landing from './sign-in/Landing';
 
 const authService = new AuthService({
     clientId:       process.env.REACT_APP_AUTHSERVER_CLIENTID,
@@ -134,8 +135,7 @@ function WrappedSecuredApp() {
         <AuthProvider authService={authService}>
             <ApolloProvider client={gqlClient}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <ThemeProvider theme={CambianTheme}>
-                        <CssBaseline/>
+                    <ThemeProvider>
 
                         <BrowserRouter basename={process.env.REACT_APP_WEBSITE_CONTEXT}>  {/* // Will be '/signin'  */}
                             <Routes>
@@ -185,13 +185,76 @@ function SecuredApp() {
     let currentUser = authService.getCurrentUser();
     if (currentUser === undefined || currentUser === null || Object.keys(currentUser).length === 0) {
         return(
-            <NavigatorInitialization />
+            <Landing />
         );
     }
 
     return(
         <NavigatorUserSignin />
     );
+}
+
+function TestLanding() {
+    const authStructure = JSON.parse(localStorage.getItem('auth'));
+    console.log("everything in the authStructure: ", authStructure);
+
+
+    const signOut = () => {
+        console.log("logging out");
+        //window.localStorage.removeItem('auth');
+        //window.location.href='http://silverfir:8787/realms/MisDev2/protocol/openid-connect/logout';
+        authService.logout(true)
+            .then(() => window.location.replace(process.env.REACT_APP_WEBSITE_CONTEXT));
+    }
+
+
+    const handleLogout = () => {
+        window.location.href='http://192.168.10.201:8787/realms/MisDev/protocol/openid-connect/logout';
+      }
+
+
+
+  /*  const [isTimeout, setIsTimeout] = useState(false);
+  useEffect(() => {
+    const timer = new IdleTimer({
+      timeout: 10, //expire after 10 seconds
+      onTimeout: () => {
+        setIsTimeout(true);
+      },
+      onExpired: () => {
+        // do something if expired on load
+        setIsTimeout(true);
+      }
+    });
+
+    return () => {
+      timer.cleanUp();
+    };
+  }, []);*/
+
+  /*
+   {!isTimeout &&
+            <div>Active</div>
+            }
+            {isTimeout &&
+            <div>NOT Active</div>
+            }
+            */
+    // return the headers to the context so httpLink can read them
+    return(
+        <div>
+            <h1>Hello World 123</h1>
+            <p>Access token: {authStructure.access_token}</p>
+            <p>Refresh token: {authStructure.refresh_token}</p>
+            <button onClick={signOut}>
+                Sign out
+            </button>
+ 
+
+ 
+            
+        </div>
+    )
 }
 
 function NavigatorInitialization() {

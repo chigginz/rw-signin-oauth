@@ -180,12 +180,32 @@ export class AuthService<TIDToken = JWTIDToken> {
   async logout(shouldEndSession: boolean = false): Promise<boolean> {
     console.log('+++ logout ' + shouldEndSession + ':' + JSON.stringify(this.props));
     console.log('Should End? ' + shouldEndSession);
+    const authDetail = window.localStorage.getItem('auth');
 
     clearStateVariables();
 
+    //window.location.href='http://192.168.10.201:8787/realms/MisDev/protocol/openid-connect/logout';
+
     if (shouldEndSession) {
+      var authDetailObj = null;
+      if (authDetail !== null && authDetail !== 'null') {
+        authDetailObj = JSON.parse(authDetail);
+      }
+      const {
+        clientId,
+        clientSecret,
+        contentType,
+        provider,
+        tokenEndpoint,
+        redirectUri,
+        autoRefresh = true
+      } = this.props 
+      console.log("what is the client id?", clientId);
+      console.log("what is the client secret? ", clientSecret);
+      const data = { client_id : clientId, client_secret : clientSecret, refresh_token : authDetailObj.refresh_token };
       const { logoutEndpoint } = this.props;
       let accessToken = this.getAuthTokens().access_token;
+      console.log("access token full: ", accessToken);
 
       console.log('LOGOUT: ' + logoutEndpoint);
       console.log('accessToken: ' + accessToken);
@@ -194,14 +214,17 @@ export class AuthService<TIDToken = JWTIDToken> {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': 'Bearer ' + accessToken
         },
-        method: 'POST'
+        //body: JSON.stringify(data),
+        method: 'POST',
+
       }).then((response) => {
         console.log('SUCCESSFUL LOGOUT');
         console.log(response)
       })
         .catch(() => console.log('FAILED LOGOUT'));
 
-      console.log("DONE integration api gateway logout")
+      console.log("DONE integration api gateway logout");
+      console.log("printing??");
 
       this.removeItem('pkce');
       this.removeItem('auth');

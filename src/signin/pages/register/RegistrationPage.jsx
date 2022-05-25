@@ -13,7 +13,6 @@ import {
     Stack,
     Typography
 } from "@mui/material";
-import {Register} from "@cambianrepo/cambianreact";
 import {REGISTER_NEW_USER} from "../../../qglMutators";
 import {useMutation} from "@apollo/client";
 import {useTranslation} from "react-i18next";
@@ -62,11 +61,6 @@ function RegistrationPage() {
                      display={{xs: "none", sm: "none", md: "block"}}/>
                 <Box component={Grid} item xs={12} sm={12} md={8} lg={6} xl={6} display={{xs: "block"}}>
                     <div className="componentBorder">
-                        <Register enableFooterCallback={enableFooterCallback}
-                                  firstNameOverride={firstName}
-                                  lastNameOverride={lastName}
-                                  emailOverride={email} />
-
                         <RegistrationFooter submissionReady={submissionReady}
                                             firstName={firstName}
                                             lastName={lastName}
